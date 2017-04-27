@@ -19,9 +19,8 @@ h1 {
 
 .Board {
   border-bottom:1px solid #333;
-  /*width:550px;
-  height:330px;*/
-  background-color: #eee;
+  width:550px;
+  height:330px;
   margin: 0 auto;
 }
 
@@ -36,9 +35,9 @@ h1 {
   background-color: #000;
 }
 
-.dead {
+/*.dead {
   background-color: #000;
-}
+}*/
 
 .alive {
   background-color:#fbb;
