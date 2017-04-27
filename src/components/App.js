@@ -59,30 +59,30 @@ class App extends Component {
         for(let j = 0; j < width; j++){
           let sum = 0;
           if(i-1 >= 0){
-            sum += board[i-1][j];
+            sum += newGen[i-1][j];
           }
           if(j-1 >= 0){
-            sum += board[i][j-1];
+            sum += newGen[i][j-1];
           }
           if(i-1 >= 0 && j-1 >= 0){
-            sum += board[i-1][j-1];
+            sum += newGen[i-1][j-1];
           }
-          if(i+1 <= height){
-            sum += board[i+1][j];
+          if(i+1 < height){
+            sum += newGen[i+1][j];
           }
-          if(j+1 <= width){
-            sum += board[i][j+1];
+          if(j+1 < width){
+            sum += newGen[i][j+1];
           }
-          if(i+1 <= height && j+1 <= width){
-            sum += board[i+1][j+1];
+          if(i+1 < height && j+1 < width){
+            sum += newGen[i+1][j+1];
           }
-          if(i-1 >=0 && j+1 <= width){
-            sum += board[i-1][j+1];
+          if(i-1 >=0 && j+1 < width){
+            sum += newGen[i-1][j+1];
           }
-          if(i+1 <= height && j-1 >= 0){
-            sum += board[i+1][j-1];
+          if(i+1 < height && j-1 >= 0){
+            sum += newGen[i+1][j-1];
           }
-          
+
           if(newGen[i][j] === 0 && sum === 3){
             newGen[i][j] = 1;
           } else if(newGen[i][j] === 1 && (sum < 2)){
@@ -94,7 +94,6 @@ class App extends Component {
           }
         }
       }
-
 
     this.setState({
       board: newGen,
