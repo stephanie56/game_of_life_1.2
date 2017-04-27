@@ -7,8 +7,8 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      width:5,
-      height:5,
+      width:50,
+      height:30,
       speed:1000,
       board:[],
     }
@@ -39,12 +39,51 @@ class App extends Component {
   // called when a Cell is clicked
   _updateBoard(rowIdx, colIdx, val){
     const newBoard = this.state.board;
-    newBoard[rowIdx][colIdx] = val;
+    const updatedState = val ? 1 : 0;
+    newBoard[rowIdx][colIdx] = updatedState;
     this.setState({
       board: newBoard
     });
     console.log(this.state.board);
+  }
 
+  // method to generate a new generation based on rules: need current this.state.board
+  _getGen(arr){
+    console.log('generating new neighbourhood!');
+    const newGen = this.state.board;
+    const height = this.state.height;
+    const width = this.state.width;
+
+    // iterate nested array and apply rules to each cell
+    for(let i = 0; i < height; i++){
+        for(let j = 0; j < width; j++){
+          if(i-1 >= 0 && i+1 < height && j-1 >= 0 && j+1 < width - 1){
+            let top_l = newGen[i-1][j-1];
+            let top = newGen[i-1][j];
+            let top_r = newGen[i-1][j+1];
+            let left = newGen[i][j-1];
+            let right = newGen[i][j+1];
+            let btm_l = newGen[i+1][j-1];
+            let btm = newGen[i+1][j];
+            let btm_r = newGen[i+1][j+1];
+            let sum = top_l + top + top_r + left + right + btm_l + btm + btm_r;
+            if(newGen[i][j] === 0 && sum === 3){
+              newGen[i][j] = 1;
+            } else if(newGen[i][j] === 1 && (sum < 2)){
+              newGen[i][j] = 0;
+            } else if(newGen[i][j] === 1 && (sum === 2 || sum === 3)){
+              newGen[i][j] = 1;
+            } else if(newGen[i][j] === 1 && (sum > 3)){
+              newGen[i][j] = 0;
+            }
+          }
+        }
+      }
+
+    this.setState({
+      board: newGen,
+    });
+    // console.log(this.state.board);
   }
 
   // render components
@@ -66,6 +105,7 @@ class App extends Component {
               )
             })
           }
+        <input type="button" value="new gen" onClick={this._getGen.bind(this)} />
         </div>
       </div>
     );
