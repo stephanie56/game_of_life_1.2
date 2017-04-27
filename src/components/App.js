@@ -57,28 +57,44 @@ class App extends Component {
     // iterate nested array and apply rules to each cell
     for(let i = 0; i < height; i++){
         for(let j = 0; j < width; j++){
-          if(i-1 >= 0 && i+1 < height && j-1 >= 0 && j+1 < width - 1){
-            let top_l = newGen[i-1][j-1];
-            let top = newGen[i-1][j];
-            let top_r = newGen[i-1][j+1];
-            let left = newGen[i][j-1];
-            let right = newGen[i][j+1];
-            let btm_l = newGen[i+1][j-1];
-            let btm = newGen[i+1][j];
-            let btm_r = newGen[i+1][j+1];
-            let sum = top_l + top + top_r + left + right + btm_l + btm + btm_r;
-            if(newGen[i][j] === 0 && sum === 3){
-              newGen[i][j] = 1;
-            } else if(newGen[i][j] === 1 && (sum < 2)){
-              newGen[i][j] = 0;
-            } else if(newGen[i][j] === 1 && (sum === 2 || sum === 3)){
-              newGen[i][j] = 1;
-            } else if(newGen[i][j] === 1 && (sum > 3)){
-              newGen[i][j] = 0;
-            }
+          let sum = 0;
+          if(i-1 >= 0){
+            sum += board[i-1][j];
+          }
+          if(j-1 >= 0){
+            sum += board[i][j-1];
+          }
+          if(i-1 >= 0 && j-1 >= 0){
+            sum += board[i-1][j-1];
+          }
+          if(i+1 <= height){
+            sum += board[i+1][j];
+          }
+          if(j+1 <= width){
+            sum += board[i][j+1];
+          }
+          if(i+1 <= height && j+1 <= width){
+            sum += board[i+1][j+1];
+          }
+          if(i-1 >=0 && j+1 <= width){
+            sum += board[i-1][j+1];
+          }
+          if(i+1 <= height && j-1 >= 0){
+            sum += board[i+1][j-1];
+          }
+          
+          if(newGen[i][j] === 0 && sum === 3){
+            newGen[i][j] = 1;
+          } else if(newGen[i][j] === 1 && (sum < 2)){
+            newGen[i][j] = 0;
+          } else if(newGen[i][j] === 1 && (sum === 2 || sum === 3)){
+            newGen[i][j] = 1;
+          } else if(newGen[i][j] === 1 && (sum > 3)){
+            newGen[i][j] = 0;
           }
         }
       }
+
 
     this.setState({
       board: newGen,
