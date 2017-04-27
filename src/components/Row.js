@@ -13,7 +13,8 @@ class Row extends Component {
                 key={idx}
                 cell={cell}
                 colIdx={idx}
-                rowIdx={this.props.rowIdx}/>
+                rowIdx={this.props.rowIdx}
+              />
             )
           })
         }
