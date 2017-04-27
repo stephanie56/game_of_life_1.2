@@ -1,0 +1,49 @@
+body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+h1 {
+  padding:0;
+  margin: 0;
+}
+
+.App {
+  background-color:#333333;
+  color:#eee;
+  padding:30px;
+  height:800px;
+}
+
+.Board {
+  border-bottom:1px solid #333;
+  /*width:550px;
+  height:330px;*/
+  background-color: #eee;
+  margin: 0 auto;
+}
+
+.Cell {
+  width:10px;
+  height:10px;
+  border-left:1px solid #333;
+  border-top:1px solid #333;
+  margin:0;
+  padding:0;
+  float:left;
+  background-color: #000;
+}
+
+.dead {
+  background-color: #000;
+}
+
+.alive {
+  background-color:#fbb;
+}
+
+.Panel {
+  padding:20px;
+}
