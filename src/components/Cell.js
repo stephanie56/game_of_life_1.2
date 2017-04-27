@@ -1,13 +1,20 @@
-import styled from 'styled-components';
+import React, { Component } from 'react';
 
-const Cell = styled.div`
-  width:10px;
-  height:10px;
-  border-left:1px solid #333;
-  border-top:1px solid #333;
-  margin:0;
-  padding:0;
-  float:left;
-  background-color: ${props => props.cell ? '#fbb' : '#000'};
-`
+class Cell extends Component {
+  // method
+  _updateState(){
+    console.log('eeeee');
+    this.props.updateBoard(this.props.rowIdx, this.props.colIdx, !this.props.cell);
+  }
+
+  render() {
+    return (
+      <div
+        className={ this.props.cell ? "alive" : "dead" }
+        onClick={this._updateState.bind(this)}
+      ></div>
+    );
+  }
+}
+
 export default Cell;

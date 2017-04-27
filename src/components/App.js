@@ -7,8 +7,8 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      width:50,
-      height:30,
+      width:5,
+      height:5,
       speed:1000,
       board:[],
     }
@@ -35,9 +35,21 @@ class App extends Component {
     });
   }
 
+  // method to get updated state from Cell and update this.state.board
+  // called when a Cell is clicked
+  _updateBoard(rowIdx, colIdx, val){
+    const newBoard = this.state.board;
+    newBoard[rowIdx][colIdx] = val;
+    this.setState({
+      board: newBoard
+    });
+    console.log(this.state.board);
+
+  }
+
   // render components
   render() {
-    console.log(this.state.board);
+    // console.log(this.state.board);
     // const board = this.state.board;
     return (
       <div className="App">
@@ -49,6 +61,7 @@ class App extends Component {
                   key={idx}
                   rowIdx={idx}
                   row={row}
+                  updateBoard={this._updateBoard.bind(this)}
                  />
               )
             })

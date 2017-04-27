@@ -19,16 +19,30 @@ h1 {
 
 .Board {
   border-bottom:1px solid #333;
-  width:550px;
-  height:330px;
+  width:55px;
+  height:33px;
   margin: 0 auto;
 }
 
 .dead {
+  width:10px;
+  height:10px;
+  border-left:1px solid #333;
+  border-top:1px solid #333;
+  margin:0;
+  padding:0;
+  float:left;
   background-color: #000;
 }
 
 .alive {
+  width:10px;
+  height:10px;
+  border-left:1px solid #333;
+  border-top:1px solid #333;
+  margin:0;
+  padding:0;
+  float:left;
   background-color:#fbb;
 }
 
