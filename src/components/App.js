@@ -105,9 +105,16 @@ class App extends Component {
   render() {
     // console.log(this.state.board);
     // const board = this.state.board;
+    const w = this.state.width * 11;
+    const h = this.state.height * 11;
+    const boardStyle = {
+      width: w + 'px',
+      height: h + 'px'
+    }
+
     return (
       <div className="App">
-        <div className="Board">
+        <div className="Board" style={boardStyle}>
           {
             this.state.board.map((row, idx) => {
               return (
