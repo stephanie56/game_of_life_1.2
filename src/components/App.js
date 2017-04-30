@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Row from './Row';
+import ControlPanel from './ControlPanel';
+import SizePanel from './SizePanel';
 import '../styles/App.css';
 
 class App extends Component {
@@ -10,6 +12,7 @@ class App extends Component {
       width:50,
       height:30,
       speed:1000,
+      generation:0,
       board:[],
     }
   }
@@ -17,6 +20,14 @@ class App extends Component {
   componentWillMount(){
     this._initBoard(this.state.width, this.state.height);
   }
+
+  componentDidMount(){
+    this.timerId = setInterval(() => this._getGen(), 1000);
+  }
+
+   componentWillUnmount(){
+     clearInterval(this.timerId);
+   }
 
   // method to initialize a new board with width & height
   // called when (1) first init (componentWillMount) & (2) width and height are updated
@@ -53,6 +64,7 @@ class App extends Component {
     const newGen = this.state.board;
     const height = this.state.height;
     const width = this.state.width;
+    const gen = this.state.generation + 1;
 
     // iterate nested array and apply rules to each cell
     for(let i = 0; i < height; i++){
@@ -97,8 +109,13 @@ class App extends Component {
 
     this.setState({
       board: newGen,
+      generation: gen
     });
     // console.log(this.state.board);
+  }
+
+  _stopGen(){
+    clearInterval(this.timerId);
   }
 
   // render components
@@ -114,6 +131,11 @@ class App extends Component {
 
     return (
       <div className="App">
+        <h1>ReactJS Game of Life</h1>
+        <ControlPanel
+          generation={this.state.generation}
+          stopGen={this._stopGen.bind(this)}
+          />
         <div className="Board" style={boardStyle}>
           {
             this.state.board.map((row, idx) => {
@@ -127,8 +149,8 @@ class App extends Component {
               )
             })
           }
-        <input type="button" value="new gen" onClick={this._getGen.bind(this)} />
         </div>
+        <SizePanel/>
       </div>
     );
   }
