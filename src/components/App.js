@@ -55,12 +55,12 @@ class App extends Component {
     this.setState({
       board: newBoard
     });
-    console.log(this.state.board);
+    // console.log(this.state.board);
   }
 
   // method to generate a new generation based on rules: need current this.state.board
   _getGen(arr){
-    console.log('generating new neighbourhood!');
+    // console.log('generating new neighbourhood!');
     const newGen = this.state.board;
     const height = this.state.height;
     const width = this.state.width;
@@ -120,15 +120,35 @@ class App extends Component {
 
   _stopGame(){
     clearInterval(this.timerId);
+    console.log('stop');
+  }
+
+  _clearGame(){
+    console.log('clear');
+    clearInterval(this.timerId);
+    this.setState({
+      generation:0
+    });
+    const boardCopy = [];
+    for(let i = 0; i < this.state.height; i++){
+      const row = [];
+        for(let j = 0; j < this.state.width; j++){
+          row.push(0);
+        }
+      boardCopy.push(row);
+    }
+    // update state with boardCopy
+    this.setState({
+      board: boardCopy,
+    });
   }
 
   // render components
   render() {
-    // console.log(this.state.board);
-    // const board = this.state.board;
+    // control board size
     const w = this.state.width * 11;
     const h = this.state.height * 11;
-    const boardStyle = {
+    const boardSize = {
       width: w + 'px',
       height: h + 'px'
     }
@@ -140,8 +160,9 @@ class App extends Component {
           generation={this.state.generation}
           runGame={this._runGame.bind(this)}
           stopGame={this._stopGame.bind(this)}
-          />
-        <div className="Board" style={boardStyle}>
+          clearGame={this._clearGame.bind(this)}
+        />
+        <div className="Board" style={boardSize}>
           {
             this.state.board.map((row, idx) => {
               return (
