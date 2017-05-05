@@ -1,7 +1,8 @@
 {
-  "name": "life_of_game_2",
+  "name": "game_of_life",
   "version": "0.1.0",
   "private": true,
+  "author": "Stephanie Zeng",
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

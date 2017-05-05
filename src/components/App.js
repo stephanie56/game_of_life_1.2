@@ -114,7 +114,11 @@ class App extends Component {
     // console.log(this.state.board);
   }
 
-  _stopGen(){
+  _runGame(){
+    this.timerId = setInterval(() => this._getGen(), 1000);
+  }
+
+  _stopGame(){
     clearInterval(this.timerId);
   }
 
@@ -134,7 +138,8 @@ class App extends Component {
         <h1>ReactJS Game of Life</h1>
         <ControlPanel
           generation={this.state.generation}
-          stopGen={this._stopGen.bind(this)}
+          runGame={this._runGame.bind(this)}
+          stopGame={this._stopGame.bind(this)}
           />
         <div className="Board" style={boardStyle}>
           {
