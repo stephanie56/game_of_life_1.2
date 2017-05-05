@@ -114,6 +114,15 @@ class App extends Component {
     // console.log(this.state.board);
   }
 
+  _resizeBoard(w, h){
+    clearInterval(this.timerId);
+    this.setState({
+      width: w,
+      height: h
+    });
+    console.log(w,h);
+  }
+
   _runGame(){
     this.timerId = setInterval(() => this._getGen(), 1000);
   }
@@ -176,7 +185,9 @@ class App extends Component {
             })
           }
         </div>
-        <SizePanel/>
+        <SizePanel
+          resizeBoard={this._resizeBoard.bind(this)}
+        />
       </div>
     );
   }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 class SizePanel extends Component {
-  _handleSize(){
-
+  _handleSize(e){
+    let width = e.target.dataset.width;
+    let height = e.target.dataset.height;
+    this.props.resizeBoard(width, height);
   }
 
   render() {
