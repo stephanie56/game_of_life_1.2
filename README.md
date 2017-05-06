@@ -7,3 +7,6 @@ An implementation of Conway's Game of Life using React.js. This project was boot
 - install node
 - run `npm install`
 - run `npm start` to start server on localhost:3000
+
+Preview Screen Shot
+<img src="images/screen_shot.png" />
