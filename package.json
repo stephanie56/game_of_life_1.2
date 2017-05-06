@@ -1,6 +1,7 @@
 {
-  "name": "game_of_life",
+  "name": "react_game_of_life",
   "version": "0.1.0",
+  "homepage": "https://stephanie56.github.io/react_game_of_life",
   "private": true,
   "author": "Stephanie Zeng",
   "description": "An implementation of Conway's Game of Life using React.js.",
