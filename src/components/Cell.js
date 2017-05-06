@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Cell extends Component {
   // method
   _updateState(){
-    console.log('eeeee');
     this.props.updateBoard(this.props.rowIdx, this.props.colIdx, !this.props.cell);
   }
 

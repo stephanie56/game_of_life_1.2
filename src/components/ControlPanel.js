@@ -4,7 +4,6 @@ class ControlPanel extends Component {
 
   render() {
     return (
-
       <div className="Panel">
         <input type="button" value="Run"
           onClick={this.props.runGame}

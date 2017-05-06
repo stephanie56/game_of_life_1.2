@@ -10,7 +10,7 @@ class SizePanel extends Component {
   render() {
     return (
       <div className="Panel">
-      Board Size:
+      <span>Board Size</span>
         <input
           type="button"
           value="Size: 50x30"

@@ -17,20 +17,21 @@ class App extends Component {
     }
   }
 
+  // init new board with default width & height
   componentWillMount(){
     this._initBoard(this.state.width, this.state.height);
   }
 
   componentDidMount(){
-    this.timerId = setInterval(() => this._getGen(), 1000);
+    this._runGame();
   }
 
-   componentWillUnmount(){
-     clearInterval(this.timerId);
-   }
+  componentWillUnmount(){
+    this._stopGame();
+  }
 
   // method to initialize a new board with width & height
-  // called when (1) first init (componentWillMount) & (2) width and height are updated
+  // called when (1) first init (componentWillMount) & (2) width and height are updated (this._resizeBoard() is called)
   _initBoard(w, h){
     const boardCopy = [];
     for(let i = 0; i < h; i++){
@@ -55,10 +56,9 @@ class App extends Component {
     this.setState({
       board: newBoard
     });
-    // console.log(this.state.board);
   }
 
-  // method to generate a new generation based on rules: need current this.state.board
+  // method to generate a new generation based on rules
   _getGen(arr){
     // console.log('generating new neighbourhood!');
     const newGen = this.state.board;
@@ -115,26 +115,27 @@ class App extends Component {
   }
 
   _resizeBoard(w, h){
-    clearInterval(this.timerId);
+    this._stopGame();
+    // generate new board with updated width & height
+    this._initBoard(w, h);
+    // update states
     this.setState({
       width: w,
       height: h
     });
-    console.log(w,h);
+    this._runGame();
   }
 
   _runGame(){
-    this.timerId = setInterval(() => this._getGen(), 1000);
+    this.timer = setInterval(() => this._getGen(), 1000);
   }
 
   _stopGame(){
-    clearInterval(this.timerId);
-    console.log('stop');
+    clearInterval(this.timer);
   }
 
   _clearGame(){
-    console.log('clear');
-    clearInterval(this.timerId);
+    this._stopGame();
     this.setState({
       generation:0
     });
@@ -164,7 +165,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>ReactJS Game of Life</h1>
+        <h1>Game of Life</h1>
         <ControlPanel
           generation={this.state.generation}
           runGame={this._runGame.bind(this)}
@@ -188,6 +189,7 @@ class App extends Component {
         <SizePanel
           resizeBoard={this._resizeBoard.bind(this)}
         />
+      <span className="Credit">Coded with &hearts; by <a href="https://github.com/stephanie56">Stephanie Zeng</a></span>
       </div>
     );
   }

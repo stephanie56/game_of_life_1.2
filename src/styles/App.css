@@ -3,6 +3,8 @@ body {
   padding:0;
   font-family: sans-serif;
   text-align: center;
+  font-size: 1.2em;
+  background-color:#333333;
 }
 
 h1 {
@@ -10,17 +12,24 @@ h1 {
   margin: 0;
 }
 
+input[type=button] {
+  background-color: #fff;
+  border:1px solid transparent;
+  padding:4px 16px;
+  margin:0 6px;
+  border-radius:2px;
+  color:#333;
+  cursor: pointer;
+}
+
 .App {
-  background-color:#333333;
   color:#eee;
   padding:30px;
-  height:800px;
+  height:100%;
 }
 
 .Board {
   border-bottom:1px solid #333;
-  width:550px;
-  height:330px;
   margin: 0 auto;
 }
 
@@ -48,4 +57,18 @@ h1 {
 
 .Panel {
   padding:20px;
+}
+
+.Panel span {
+  margin: 0 10px;
+}
+
+.Credit {
+  font-size: 0.9em;
+  margin-top: 40px;
+  display:block;
+}
+
+.Credit a {
+  color: #fff;
 }
